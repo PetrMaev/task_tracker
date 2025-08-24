@@ -1,0 +1,107 @@
+[
+{
+    "model": "tasks.task",
+    "pk": 1,
+    "fields": {
+        "title": "Подготовить ТЗ",
+        "description": "Подготовить ТЗ на установку АПС в АБК",
+        "owner": 2,
+        "parent_task": null,
+        "is_parent": true,
+        "executor": 3,
+        "deadline": "2025-08-29T07:00:00Z",
+        "status": "work",
+        "created_at": "2025-08-24T17:58:06.756Z"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+        "title": "Собрать исходные данные",
+        "description": "Собрать исходные данные для ТЗ",
+        "owner": 2,
+        "parent_task": 1,
+        "is_parent": false,
+        "executor": 3,
+        "deadline": "2025-08-27T14:00:00Z",
+        "status": "work",
+        "created_at": "2025-08-24T18:00:24.591Z"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+        "title": "Обновить однолиненйные схемы",
+        "description": null,
+        "owner": 2,
+        "parent_task": null,
+        "is_parent": true,
+        "executor": 3,
+        "deadline": "2025-09-09T14:00:00Z",
+        "status": "created",
+        "created_at": "2025-08-24T18:06:54.793Z"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+        "title": "Обойти КТП для сбора данных",
+        "description": null,
+        "owner": 2,
+        "parent_task": 3,
+        "is_parent": false,
+        "executor": 3,
+        "deadline": "2025-09-06T14:00:00Z",
+        "status": "created",
+        "created_at": "2025-08-24T18:08:28.692Z"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 5,
+    "fields": {
+        "title": "Забрать исполнительную документацию",
+        "description": "Забрать исполнительную документацию у подрядчика",
+        "owner": 2,
+        "parent_task": null,
+        "is_parent": true,
+        "executor": 4,
+        "deadline": "2025-08-26T06:00:00Z",
+        "status": "created",
+        "created_at": "2025-08-24T18:12:24.701Z"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 6,
+    "fields": {
+        "title": "Проверить исполнительную документацию",
+        "description": "Проверить исполнительную документацию на предмет несоответствия проекту",
+        "owner": 2,
+        "parent_task": 5,
+        "is_parent": false,
+        "executor": 4,
+        "deadline": "2025-08-31T14:00:00Z",
+        "status": "created",
+        "created_at": "2025-08-24T18:13:37.109Z"
+    }
+},
+{
+    "model": "tasks.task",
+    "pk": 7,
+    "fields": {
+        "title": "Передать исполнительную документацию",
+        "description": "Передать исполнительную документацию в строительный департамент",
+        "owner": 2,
+        "parent_task": 5,
+        "is_parent": false,
+        "executor": 4,
+        "deadline": "2025-09-17T14:00:00Z",
+        "status": "created",
+        "created_at": "2025-08-24T18:14:33.951Z"
+    }
+}
+]

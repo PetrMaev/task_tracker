@@ -1,0 +1,82 @@
+[
+{
+    "model": "users.customuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$RyLv0Uvc1LQ9DpgR6MA8H1$v+0OXsOLL77pht4tHUnl5oyE6NQGd9fkFxbz7+0BBks=",
+        "last_login": null,
+        "is_superuser": true,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-08-24T16:57:04.447Z",
+        "email": "admin@sky.pro",
+        "full_name": "Admin Adminov",
+        "post": "Administrator",
+        "is_director": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$PlrIhViJDuFDaFNxPfBO2S$CyE/+0yn9vlFvvqKPZYgTjZVlo+xNvDApgxTTMWYz44=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-24T17:20:41.912Z",
+        "email": "director@mail.ru",
+        "full_name": "Сидоров Иван Иванович",
+        "post": "Исполнительный директор",
+        "is_director": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$vzbYkwdksi8x6esAdnqv5l$ov4rCchXZQCzd16J8nA5kBZMZlXx5kw9HM0evqO9+L4=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-24T17:21:25.749Z",
+        "email": "user1@mail.ru",
+        "full_name": "Петров Петр Петрович",
+        "post": "Работник 1",
+        "is_director": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "users.customuser",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$cbSw4EpBkAjtUCOETDDJmP$xS5d7z/lr2PsuGp7pBIJPR9fMNwL1Tj5xpWpBF9E81s=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-08-24T17:22:02.679Z",
+        "email": "user2@mail.ru",
+        "full_name": "Иванов Иван Иванович",
+        "post": "Сотрудник 2",
+        "is_director": false,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
