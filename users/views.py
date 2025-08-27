@@ -1,11 +1,15 @@
-from rest_framework.filters import SearchFilter, OrderingFilter
+from django.db.models import Count, Q
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics, filters
+from rest_framework import generics
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
+from tasks.paginators import CustomPagination
 from users.models import CustomUser
 from users.permissions import IsUserOwner
-from users.serializers import UserSerializer, UserCreateSerializer
+from users.serializers import FreeUserSerializer, UserCreateSerializer, UserSerializer
+from users.services import get_free_employees
 
 
 class CustomUserCreateAPIView(generics.CreateAPIView):
@@ -27,9 +31,39 @@ class CustomUserListAPIView(generics.ListAPIView):
     serializer_class = UserSerializer
     queryset = CustomUser.objects.all()
     permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    pagination_class = CustomPagination
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = []
-    ordering_fields = ("tasks",)
+    search_fields = ["full_name", "email"]
+    ordering_fields = ["id", "tasks", "tasks_count", "tasks_active_count"]
+
+    def get(self, request, *args, **kwargs):
+        allowed_ordering = ["tasks_count", "tasks_active_count", "full_name", "email", "id"]
+
+        users = CustomUser.objects.annotate(
+            tasks_count=Count("tasks"), tasks_active_count=Count("tasks", filter=Q(tasks__status="work"))
+        )
+
+        ordering = request.query_params.get("ordering")
+        if ordering not in allowed_ordering:
+            ordering = "id"  # Значение по умолчанию
+
+        sort_users = users.order_by(ordering)
+
+        serializer = UserSerializer(sort_users, many=True)
+        return Response(serializer.data)
+
+
+class FreeEmployeesListAPIView(generics.ListAPIView):
+    serializer_class = FreeUserSerializer
+    queryset = CustomUser.objects.all()
+    permission_classes = [IsAuthenticated]
+    pagination_class = CustomPagination
+
+    def get(self, request, *args, **kwargs):
+        result = get_free_employees()
+        serializer = FreeUserSerializer(result, many=True)
+        return Response(serializer.data)
 
 
 class CustomUserUpdateAPIView(generics.UpdateAPIView):
