@@ -55,7 +55,7 @@ exclude = '''
 line_length = 119
 
 [tool.coverage.run]
-source = ["habits", "users"]
+source = ["tasks", "users"]
 omit = [
     "tests/*",
     "migrations/*",
