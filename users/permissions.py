@@ -21,6 +21,7 @@ class IsOwner(permissions.BasePermission):
 
 class IsExecutor(permissions.BasePermission):
     """Проверяет, является ли пользователь исполнителем задачи."""
+
     def has_object_permission(self, request, view, obj):
         if obj.executor == request.user:
             return True

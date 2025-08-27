@@ -6,19 +6,10 @@ class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name="Email")
     full_name = models.CharField(
-        max_length=255,
-        verbose_name="Фамилия, имя, отчество",
-        help_text="Укажите фамилию, имя и отчество"
+        max_length=255, verbose_name="Фамилия, имя, отчество", help_text="Укажите фамилию, имя и отчество"
     )
-    post = models.CharField(
-        max_length=250,
-        verbose_name="Должность",
-        help_text="Укажите должность"
-    )
-    is_director = models.BooleanField(
-        default=False,
-        verbose_name="Является ли пользователь руководителем"
-    )
+    post = models.CharField(max_length=250, verbose_name="Должность", help_text="Укажите должность")
+    is_director = models.BooleanField(default=False, verbose_name="Является ли пользователь руководителем")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

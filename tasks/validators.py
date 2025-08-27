@@ -13,6 +13,4 @@ class DeadlineValidator:
         date_now = timezone.localtime()
         if deadline is not None:
             if deadline < date_now:
-                raise serializers.ValidationError(
-                    "Нельзя указывать прошедшую дату"
-                )
+                raise serializers.ValidationError("Нельзя указывать прошедшую дату")

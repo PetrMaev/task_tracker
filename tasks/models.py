@@ -1,5 +1,6 @@
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
+
 from users.models import CustomUser
 
 
@@ -15,15 +16,10 @@ class Task(models.Model):
     ]
 
     title = models.CharField(
-        max_length=255,
-        verbose_name="Наименование задачи",
-        help_text="Укажите наименование задачи"
+        max_length=255, verbose_name="Наименование задачи", help_text="Укажите наименование задачи"
     )
     description = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Описание задачи",
-        help_text="Укажите описание задачи"
+        blank=True, null=True, verbose_name="Описание задачи", help_text="Укажите описание задачи"
     )
     owner = models.ForeignKey(
         CustomUser,
@@ -37,25 +33,15 @@ class Task(models.Model):
         on_delete=models.SET_NULL,
         verbose_name="Родительская задача",
     )
-    is_parent = models.BooleanField(
-        default=False,
-        verbose_name="Родительская задача"
-    )
+    is_parent = models.BooleanField(default=False, verbose_name="Родительская задача")
     executor = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
         related_name="tasks",
         verbose_name="Исполнитель",
     )
-    deadline = models.DateTimeField(
-        verbose_name="Срок исполнения задачи"
-    )
-    status = models.CharField(
-        max_length=10,
-        choices=STATUS_CHOICES,
-        default=CREATED,
-        verbose_name="Статус задачи"
-    )
+    deadline = models.DateTimeField(verbose_name="Срок исполнения задачи")
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=CREATED, verbose_name="Статус задачи")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def clean(self):
@@ -66,7 +52,7 @@ class Task(models.Model):
             )
 
     def __str__(self):
-        return {self.title}
+        return self.title
 
     class Meta:
         verbose_name = "Задача"
