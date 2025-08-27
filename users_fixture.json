@@ -34,7 +34,7 @@
         "email": "director@mail.ru",
         "full_name": "Сидоров Иван Иванович",
         "post": "Исполнительный директор",
-        "is_director": false,
+        "is_director": true,
         "groups": [],
         "user_permissions": []
     }
