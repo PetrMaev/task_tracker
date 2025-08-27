@@ -8,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     tasks_count = serializers.SerializerMethodField()
     tasks_active_count = serializers.SerializerMethodField()
     tasks = TaskSerializer(many=True, read_only=True)
+    ordering_fields = ["tasks_count", "tasks_active_count"]
 
     def get_tasks_count(self, user):
         return user.tasks.count()
@@ -25,3 +26,13 @@ class UserCreateSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ["id", "email", "full_name", "post", "password"]
         extra_kwargs = {"password": {"write_only": True}}
+
+
+class FreeUserSerializer(serializers.ModelSerializer):
+    task_title = serializers.ReadOnlyField()
+    deadline = serializers.DateTimeField()
+    employee = serializers.ReadOnlyField()
+
+    class Meta:
+        model = CustomUser
+        fields = ["task_title", "deadline", "employee"]
