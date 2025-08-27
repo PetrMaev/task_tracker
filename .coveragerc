@@ -1,0 +1,30 @@
+[run]
+source = [tasks, users]
+omit =
+    tests/*
+    migrations/*
+    venv/*
+    .venv/*
+    env/*
+    static/*
+    media/*
+    templates/*
+    docs/*
+    build/*
+    dist/*
+    node_modules/*
+    *.pyc
+    __pycache__/*
+    config/settings/local.py
+    manage.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __str__
+    def __repr__
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if settings.DEBUG:
+    @property
+    logger\.
