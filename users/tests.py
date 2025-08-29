@@ -68,7 +68,7 @@ class CustomUserTestCase(APITestCase):
         data = response.json()
         result = [
             {
-                "id": 9,
+                "id": self.user.pk,
                 "full_name": "Tester Testrov",
                 "email": "tester@sky.pro",
                 "post": "Tester",
