@@ -33,22 +33,23 @@ class CustomUserListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     pagination_class = CustomPagination
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = []
     search_fields = ["full_name", "email"]
-    ordering_fields = ["id", "tasks", "tasks_count", "tasks_active_count"]
+    ordering_fields = ["id", "email", "full_name", "post"]
 
     def get(self, request, *args, **kwargs):
-        allowed_ordering = ["tasks_count", "tasks_active_count", "full_name", "email", "id"]
+        allowed_ordering = ["id", "email", "full_name", "tasks", "tasks_count", "-tasks_count", "tasks_active_count",
+                            "-tasks_active_count"]
 
         users = CustomUser.objects.annotate(
             tasks_count=Count("tasks"), tasks_active_count=Count("tasks", filter=Q(tasks__status="work"))
         )
+        users_sort = users.filter(is_staff=False)
 
         ordering = request.query_params.get("ordering")
         if ordering not in allowed_ordering:
             ordering = "id"  # Значение по умолчанию
 
-        sort_users = users.order_by(ordering)
+        sort_users = users_sort.order_by(ordering)
 
         serializer = UserSerializer(sort_users, many=True)
         return Response(serializer.data)
