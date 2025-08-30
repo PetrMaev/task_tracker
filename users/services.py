@@ -15,14 +15,18 @@ def get_free_employees():
     min_tasks_count = min(emp.tasks_active_count for emp in employees)
 
     free_employees = employees.filter(
-        Q(tasks_active_count=min_tasks_count) | Q(tasks_active_count__lte=(min_tasks_count + 2))
+        Q(tasks_active_count=min_tasks_count) | Q(tasks_active_count__lte=(min_tasks_count + 2)),
+        is_staff=False,
+        is_director=False
     )
+    employees_list = []
+
+    for emp in free_employees:
+        employees_list.append(emp.full_name)
 
     result = []
 
     for task in critical_tasks:
-        for emp in free_employees:
-            if not emp.is_staff and not emp.is_director and task.is_parent:
-                result.append({"task_title": task.title, "deadline": task.deadline, "employee": emp.full_name})
+        result.append({"task_title": task.title, "deadline": task.deadline, "employees": employees_list})
 
     return result
