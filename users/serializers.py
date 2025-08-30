@@ -31,8 +31,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class FreeUserSerializer(serializers.ModelSerializer):
     task_title = serializers.ReadOnlyField()
     deadline = serializers.DateTimeField()
-    employee = serializers.ReadOnlyField()
+    employees = serializers.ReadOnlyField()
 
     class Meta:
         model = CustomUser
-        fields = ["task_title", "deadline", "employee"]
+        fields = ["task_title", "deadline", "employees"]
