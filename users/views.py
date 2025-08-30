@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from tasks.paginators import CustomPagination
 from users.models import CustomUser
-from users.permissions import IsUserOwner
+from users.permissions import IsUserOwner, IsDirector
 from users.serializers import FreeUserSerializer, UserCreateSerializer, UserSerializer
 from users.services import get_free_employees
 
@@ -58,7 +58,7 @@ class CustomUserListAPIView(generics.ListAPIView):
 class FreeEmployeesListAPIView(generics.ListAPIView):
     serializer_class = FreeUserSerializer
     queryset = CustomUser.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsDirector]
     pagination_class = CustomPagination
 
     def get(self, request, *args, **kwargs):
